@@ -62,6 +62,7 @@ router.post('/signin',(req,res)=>{
                 const token = jwt.sign({_id:savedUser._id},JWT_SECRET)
                 const {_id,name,email,role} = savedUser
                 res.json({token,user:{_id,email,name,role}})
+                console.log("signin", token,user._id);
             }else{
                 return res.status(422).json({error:"Invalid Email or Password"})
             }

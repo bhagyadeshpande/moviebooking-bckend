@@ -1,12 +1,13 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 //const {MONGOURI} = require('./keys');
+const app = express();
+app.use(express.json());
+app.use(cors());
 const MONGOURI = process.env.MONGOURI || "mongodb://127.0.0.1:27017";
 const PORT = process.env.PORT || 5000;
-app.use(cors());
 mongoose.connect(MONGOURI,{
     useNewUrlParser:true,
     useUnifiedTopology:true    
@@ -17,8 +18,6 @@ mongoose.connection.on('connected',()=>{
 mongoose.connection.on("error",(err)=>{
     console.log('connecting error',err);
 })
-
-app.use(express.json());
 
 // Schema
 require('./models/user');
