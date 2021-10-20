@@ -3,12 +3,13 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const {JWT_SECRET} = require('../keys');
+//const {JWT_SECRET} = require('../keys');
 const User = mongoose.model("User");
 const {requireLogin,isAdmin} = require('../middleware/authmiddleware')
 
-// SignUp       post      /auth/signup
+const JWT_SECRET = process.env.JWT_SECRET;
 
+// SignUp       post      /auth/signup
 router.post("/signup",(req,res)=>{
     const {email,name,password} = req.body
    /* if(!email || !password || !name){
