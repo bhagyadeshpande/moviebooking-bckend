@@ -35,6 +35,13 @@ app.use("/movie",require('./routes/movie'));
 app.use("/user",require('./routes/user')); 
 app.use("/bookmovie",require('./routes/bookmovie')); 
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('build'));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join('build', 'index.html'));
+    });
+  }
+
 app.listen(PORT,()=>{
     console.log(`server Started at Port ${PORT}`)
 })
