@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 app.use(express.json());
-app.use(cors());
 const cors = require('cors');
+app.use(cors());
 const dotenv = require('dotenv');
 dotenv.config();
 const mongoose = require('mongoose');
