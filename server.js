@@ -1,11 +1,12 @@
 const express = require('express');
-const app = express();
-app.use(express.json());
+const mongoose = require('mongoose');
 const cors = require('cors');
-app.use(cors());
+const app = express();
+app.use(express.json({ extended: false }));
+app.use(cors({ origin: true, credentials: true }));
 const dotenv = require('dotenv');
 dotenv.config();
-const mongoose = require('mongoose');
+
 //const {MONGOURI} = require('./keys');
 const MONGOURI = process.env.MONGOURI || "mongodb://127.0.0.1:27017";
 const PORT = process.env.PORT || 5000;
